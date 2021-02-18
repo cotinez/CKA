@@ -1,0 +1,72 @@
+Mock test Notes :-
+
+Note "Static pod" - 
+
+temporary pod syntax
+
+    kubectl run test-pod --image=busybox:1.28 --restart=Never --rm -it -- nslookup nginx-resolver-service
+
+    If you can't spin up temporary pod, run busybox with sleep 50000 command
+
+pod dns resolution syntax
+
+    - <POD IP>.<ns>.pod
+    - example - 192-168-0-1.deafult.pod
+
+Take care of requested names in question
+
+Use key & values provided to taint node
+
+Multi Pod - env variable - Key & Value must be there
+
+If you are working on serviceaccount while creating rolebinding or clusterrolebinding use --serviceaccount, instead of simple --user
+    - When we run pod with specific service account, it mounts account's secret
+    - Verify that in description
+    - must provide namespace with serviceaccount
+
+- If you want to install auto-complete
+
+    - apt-get install bash-completion
+
+- NodeAffinity Practice
+
+    Journal list files
+        - 
+
+    - JSON PATH
+
+        - # Get ExternalIPs of all nodes
+            kubectl get nodes -o jsonpath='{.items[*].status.addresses[?(@.type=="InternalIP")].address}'
+    
+    Sidecar
+
+    Nginx manual page
+
+Network Troubleshooting
+
+    - Check for kube-proxy for networking troubleshooting
+    - Check for network endpoints
+    - Check weave (cni) logs
+    - DNS pod / svc - selector 
+    - Connection refused can come because of wrong selector as well
+
+ktl create svc nodeport syntax
+
+    - kubectl create service nodeport <myservicename>
+
+- Delete "claimRef" from pv to release old claim from pv
+
+- Nginx pod expose port - 80
+
+CSR Name must be same as requested
+
+Match everyting with requested parameters on right side
+
+Verify labels on pod & service
+
+Install etcd client
+    - apt-get install etcd-client
+
+https://medium.com/@reuvenharrison/an-introduction-to-kubernetes-network-policies-for-security-people-ba92dd4c809d
+
+https://medium.com/bb-tutorials-and-thoughts/kubernetes-learn-sidecar-container-pattern-6d8c21f873d
